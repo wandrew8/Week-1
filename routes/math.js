@@ -12,7 +12,8 @@ router.use((req, res, next) => {
 });
 
 router.post("/sum", (req, res, next) => {
-  const sum = req.body.reduce((runningSum, num) => num + runningSum, 0);
+  const numbersArray = req.body.map(num => parseInt(num));
+  const sum = numbersArray.reduce((runningSum, num) => num + runningSum, 0);
   res.json({ sum });
 });
 
@@ -22,7 +23,7 @@ router.post("/product", (req, res, next) => {
   } else {
     const product = req.body.reduce(
       (runningProduct, num) => num * runningProduct,
-      0
+      1
     );
     res.json({ product });
   }
